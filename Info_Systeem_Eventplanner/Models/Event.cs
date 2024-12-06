@@ -8,5 +8,8 @@
         public string? EventLocation { get; set; }
         public string? EventDescription { get; set; }
         public int? EventMaxVisitors { get; set; }
+
+        public ICollection<Reservations> Reservations { get; set; } = new List<Reservations>();
+        public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
 }

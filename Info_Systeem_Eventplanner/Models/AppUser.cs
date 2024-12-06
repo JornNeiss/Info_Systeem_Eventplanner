@@ -11,5 +11,9 @@ namespace Info_Systeem_Eventplanner.Models
         public string? UserEmail { get; set; }
         public string? UserPhone { get; set; }
         public required bool IsAdmin { get; set; }
+
+        public ShoppingCart ShoppingCart { get; set; }
+        public ICollection<Reservations> Reservations { get; set; } = new List<Reservations>();
+
     }
 }

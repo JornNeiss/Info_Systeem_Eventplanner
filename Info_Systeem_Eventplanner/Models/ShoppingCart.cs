@@ -10,7 +10,12 @@
 
         public int? Quantity { get; set; }
 
-        public int? TotalPrice { get; set; } 
+        public int? TotalPrice { get; set; }
+
+        // Navigatie naar AppUser
+        public AppUser AppUser { get; set; }
+
+        // Correcte naam van de collectie van Tickets
+        public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
 }
-
