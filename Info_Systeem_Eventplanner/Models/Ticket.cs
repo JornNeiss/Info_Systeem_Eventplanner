@@ -2,9 +2,10 @@
 {
     public class Ticket
     {
-        public int TicketId {  get; set; }
-        public int EventID { get; set; }
-        public int UserID { get; set; }
+        public required int TicketId {  get; set; }
+        public required int EventID { get; set; }
+        public required float TicketPrice { get; set; }
+        public required int UserID { get; set; }
         public bool? IsReserved { get; set; }
     }
 }
