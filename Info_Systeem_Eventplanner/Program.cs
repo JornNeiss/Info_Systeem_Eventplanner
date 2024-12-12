@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using Info_Systeem_Eventplanner.Models;
 using Info_Systeem_Eventplanner.Data;
 
@@ -7,6 +8,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Voeg de DbContext toe aan de DI-container
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+builder.Services.AddAuthentication()
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login"; // Inlogpagina
+        options.LogoutPath = "/Account/Logout"; // Uitlogpagina
+    });
+
 
 // Voeg controllers en Razor Pages toe
 builder.Services.AddControllersWithViews(); // Of builder.Services.AddRazorPages(); als je Razor Pages gebruikt
