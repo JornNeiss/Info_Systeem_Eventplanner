@@ -1,19 +1,29 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Info_Systeem_Eventplanner.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace Info_Systeem_Eventplanner.Models
-{
-    public class AppUser
+namespace Info_Systeem_Eventplanner.Models;
+    public class AppUser 
     {
-        public int AppUserId { get; set; }
-        public required string UserName { get; set; }
-        public required string UserPasword { get; set; }
-        public int? UserAge { get; set; }
-        public string? UserEmail { get; set; }
-        public string? UserPhone { get; set; }
-        public required bool IsAdmin { get; set; }
+        [Key]
+        public int UserID { get; set; }
 
-        public ShoppingCart ShoppingCart { get; set; }
-        public ICollection<Reservations> Reservations { get; set; } = new List<Reservations>();
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
 
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Phone]
+        public string? TelephoneNumber { get; set; }
+
+        [Required]
+        public bool IsAdmin { get; set; } = false; // Standaard is een lid geen Admin (Organisator of medewerker) 
+
+        // Relaties naar events en reservations
+        public List<Event> Events { get; set; } = new List<Event>();
+        public List<Reservation> reservations { get; set; } = new List<Reservation>(); 
     }
-}
+
+

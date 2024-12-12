@@ -1,16 +1,21 @@
-﻿namespace Info_Systeem_Eventplanner.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace Info_Systeem_Eventplanner.Models
 {
     public class Ticket
     {
-        public required int TicketId { get; set; }
-        public required int EventID { get; set; }
-        public required float TicketPrice { get; set; }
-        public required int UserID { get; set; }
-        public bool? IsReserved { get; set; }
-        public Event Event { get; set; }
-        public ICollection<ShoppingCart> ShoppingCarts { get; set; } = new List<ShoppingCart>();
+        [Key]
+        public int TicketId { get; set; }
 
-        public ICollection<Reservations> Reservations { get; set; } = new List<Reservations>();
+        [ForeignKey("Event")]
+        public int EventID { get; set; } // Foreignkey Event 
+        public Event Event { get; set; } // Navigatie naar Event
+
+        [Required]
+        public float TicketPrice { get; set; }
+
+        public bool? IsReserved { get; set; }
     }
 }
 
